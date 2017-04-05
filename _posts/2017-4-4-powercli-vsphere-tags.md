@@ -14,7 +14,7 @@ vSphere Tags are something I didn't use very often until I started using vROps. 
 ##Connect to All Your vCenters
 You might have a more sophisticated way of doing this already, but I have a text document with all my vCenter IPs and simply import them using `get-content` and then connect to all of them, like so:
 
-```
+```posh
     $vcenters = Get-Content c:\vcenters.txt
     $creds = Get-Credential
     Connect-VIServer -Credential $creds
