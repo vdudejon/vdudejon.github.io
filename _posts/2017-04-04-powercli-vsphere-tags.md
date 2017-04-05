@@ -3,8 +3,7 @@ layout: post
 title: Configure vSphere Tags Across Multiple vCenters using PowerCLI
 permalink: tags-multiple-vcs.html
 description: Some Description
-date:
-  'Mon Apr 03 2017 19:00:00 GMT-0500 (Central Daylight Time)': null
+date: 2017-04-04 9:00:00
 tags: some tags here
 published: true
 ---
