@@ -16,7 +16,7 @@ You might have a more sophisticated way of doing this already, but I have a text
 ```posh
 $vcenters = Get-Content c:\vcenters.txt
 $creds = Get-Credential
-Connect-VIServer -Credential $creds
+Connect-VIServer $vcenters -Credential $creds
 ```
 
 I have this saved as a poweshell script, so when I need to connect I just run connect-vcenters.ps1 and off we go!
