@@ -1,5 +1,11 @@
 ---
-published: false
+layout: post
+title: Bug in VSAN 6.2 De-dupe scanning running on hybrid datastores
+permalink: vsan62-dedupe-bug.html
+description: Some Description
+date: 2016-07-25 9:00:00
+tags: vsan bug sexigraf
+published: true
 ---
 Originally posted (by me) at [ThepHuck.com](http://thephuck.com/virtualization/bug-in-vsan-6-2-de-dupe-scanning-running-on-hybrid-datastores/)
 

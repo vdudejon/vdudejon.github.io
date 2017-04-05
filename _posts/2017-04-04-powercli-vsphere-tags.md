@@ -4,7 +4,7 @@ title: Configure vSphere Tags Across Multiple vCenters using PowerCLI
 permalink: tags-multiple-vcs.html
 description: Some Description
 date: 2017-04-04 9:00:00
-tags: some tags here
+tags: powercli vrops tags groups
 published: true
 ---
 
