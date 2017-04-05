@@ -43,11 +43,12 @@ You'll need to define your own group name, but now you've created a tag ready to
 Here was the real fun part.  `New-TagAssignment` also doesn't work with multiple vCenters.  So if you want to assign a tag to a list of VMs, you need to know the vCenter name and pass it through with the `-Server` switch.  When I was figuring this out, I was trying to assign tags to a list of VMs which didn't include their vCenters.  To make a long story short, here's how you do it!
 
 ```posh
-    ##Import your list of VMs
-    $vms = get-content c:\vmlist.txt
-    
-    ##Loop through each VM, assign the tag
-    foreach ($vm in $vms) { Get-VM $vm | New-TagAssignment -tag "GroupName" -Server (([uri]$vm.ExtensionData.Client.ServiceUrl).Host)}
+#Import your list of VMs, then Get-VM on all of them
+$vmlist = get-content c:\vmlist.txt
+$vms = Get-VM $vmlist
+   
+#Loop through each VM, assign the tag
+foreach ($vm in $vms) { $vm | New-TagAssignment -tag "GroupName" -Server (([uri]$vm.ExtensionData.Client.ServiceUrl).Host)}
 ```
  
 `([uri]$vm.ExtensionData.Client.ServiceUrl).Host` was the the real gold find for this task. `Get-VM` doesn't have an obvious property for the parent vCenter, but it exists in `(Get-VM).Client`.  You can see it here as a property of a VM variable in PowerGUI:
