@@ -7,8 +7,6 @@ date: 2017-04-04 14:44:42 -05:00
 tags: "some tags here"
 ---
 
-# Configure vSphere Tags Across Multiple vCenters using PowerCLI
-
 vSphere Tags are something I didn't use very often until I started using vROps.  In vROps, it's possible to create a Custom Group based on the vSphere tag which can really speed up the creation of those Custom Groups.  In a large environment, however, it can be a real chore to create and assign tags on lots of objects in multiple locations.  Using PowerCLI, we can easily create and assign tags across multiple vCenters.
 
 ## Connect to All Your vCenters
