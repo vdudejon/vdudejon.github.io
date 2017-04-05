@@ -52,13 +52,13 @@ Here was the real fun part.  `New-TagAssignment` also doesn't work with multiple
  
 `([uri]$vm.ExtensionData.Client.ServiceUrl).Host` was the the real gold find for this task. `Get-VM` doesn't have an obvious property for the parent vCenter, but it exists in `(Get-VM).Client`.  You can see it here as a property of a VM variable in PowerGUI:
 
-![get-vm-client]({{ site.baseurl }}images\2017-4-4-powercli-vsphere-tags1.png)
+![get-vm-client]({{ site.baseurl }}images\2017-4-4-powercli-vsphere-tags1.png){: .center-image }
 
 Full disclosure: I did not discover this on my own.  I received help on the PowerCLI channel of the VMware{code} Slack group, which I highly recommend that you join!
 
 ### Create Custom Group in vROps
 Anyway, that's how you know what vCenter the VM belongs to, and how you can pass it into the `-Server` switch.  Once you've done, that you can go into vROps and create a custom group full of VMs based on their tag:
 
-![vrops-tag]({{ site.baseurl }}images\2017-4-4-powercli-vsphere-tags2.png)
+![vrops-tag]({{ site.baseurl }}images\2017-4-4-powercli-vsphere-tags2.png){: .center-image }
 
 And that's all there is to it!  Now you have a Custom Group in vROps with membership defined by a vSphere Tag!
