@@ -45,7 +45,7 @@ Here was the real fun part.  `New-TagAssignment` also doesn't work with multiple
     
 `([uri]$vm.ExtensionData.Client.ServiceUrl).Host` was the the real gold find for this task. `Get-VM` doesn't have an obvious property for the parent vCenter, but it exists in `(Get-VM).Client`.  You can see it here as a property of a VM variable in PowerGUI:
 
-![get-vm|client]({{ site.baseurl }}/images/2017-4-4-powercli-vsphere-tags1.png)
+![get-vm|client]({{ site.baseurl }}images\2017-4-4-powercli-vsphere-tags1.png)
 
 
 Full disclosure: I did not discover this on my own.  I received help on the PowerCLI channel of the VMware{code} Slack group, which I highly recommend that you join!
