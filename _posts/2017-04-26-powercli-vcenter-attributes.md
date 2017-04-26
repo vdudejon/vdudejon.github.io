@@ -73,9 +73,10 @@ $vclist = Import-Csv "c:\output\vclist.csv"
 foreach ($vc in $vclist){
 	add-vcdetails -vcname $vc.Name -vcfqdn $vc.FQDN -vcip $vc.IP
 	}
+```
 
 Hit the go button and wait a short while and you're good to go!  The attributes will appear in vROps and be available for Views and Reports or whatever your heart desires.
 
-![vc-list2]({{ site.baseurl }}images\2017-4-26-powercli-vcenter-attributes-2.png){: .center-image }
+![vc-list2]({{ site.baseurl }}images\2017-4-26-powercli-vcenter-attributes-3.png){: .center-image }
 
 I realize this is an oddly specific task.  I think I'll do a similar function for creating any arbitrary custom property.  
