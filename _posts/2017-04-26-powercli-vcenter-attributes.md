@@ -19,7 +19,7 @@ The first step here is to get a list of vCenters so you know you aren't missing 
 $creds = Get-Credential -Message "User name (without domain) and password"
 $vrops = Connect-OMServer <vrops-server> -AuthSource "Your Domain"  -Credential $creds
 $vclist = Get-OMResource -ResourceKind "VMwareAdapter Instance" | select Name
-$vclist | export-csv c:\output\vclist.csv -NoTypeInformation
+$vclist | export-csv "c:\output\vclist.csv" -NoTypeInformation
 ```
 When you connect using a domain user, you need you specify `AuthSource` as the domain name as it appears in the vROps dropdown list when you log in through the web UI.  You do **not** specify the domain in your username credentials (ie `domain\user` or `user@domain.net`).  So now you have a csv of all the vCenters in vROps using their name, like so:
 
@@ -69,7 +69,7 @@ function add-vcdetails {
 So now that we have the function, we can loop through the VC list we created earlier and insert the attributes to each vCenter object:
 
 ```posh
-$vclist = Import-Csv c:\Scripts\vclist-withIPs.csv
+$vclist = Import-Csv "c:\output\vclist.csv"
 foreach ($vc in $vclist){
 	add-vcdetails -vcname $vc.Name -vcfqdn $vc.FQDN -vcip $vc.IP
 	}
