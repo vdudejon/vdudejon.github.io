@@ -19,9 +19,12 @@ For step 2, there are different options for deploying the webhook shims app.  I 
 
 This part is pretty easy really.  Just go to the Slack app directory, search for "Incoming Webhooks" and push the green "Install" button.
 
+
 ![Incoming Webhooks]({{ site.baseurl }}images\2017-10-13-webhooks-photo.png){: .center-image } 
 
+
 You'll need to configure the plug in now, and the key parts are where you tell it what channel to post to and the URL it generates.  You will need this for the shim later, so it knows where to send alerts.
+
 
 ![Incoming Webhooks Config]({{ site.baseurl }}images\2017-10-13-webhooks-photo2.png){: .center-image } 
 
@@ -43,7 +46,9 @@ A little context here... Once you end up deploying this web app, there are confi
 ##Prepare the Docker Container
 This part is pretty straightforward if you use Docker at all, and even pretty easy if you never do.  I mostly followed [this guide](https://blogs.vmware.com/management/2017/03/webhook-shims-now-available-on-docker-hub.html) for these steps.  Fire up docker on your local machine and run `docker run -it -p 5001:5001 vmware/webhook-shims`.  This will download the webhook shim container onto your local machine and start it up interactively, listening on port 5001.  You will see the log file from the web service.
 
+
 ![Docker run]({{ site.baseurl }}images\2017-10-13-docker-photo1.png){: .center-image } 
+
 
 This is mostly to prove that it works.  You can navigate to your localhost port 5001 to test the page.  Hit Ctrl+C to stop the container. Run `docker ps -a` to see the instance of the container you just ran and get the id.  We will need to start it up again and enter the shell so we can edit the config files.  For that, run 
 
@@ -53,11 +58,15 @@ This is mostly to prove that it works.  You can navigate to your localhost port 
 
 This will take you to the bash shell of the container.  Now you need to edit the slack config file, so just hit `vi loginsightwebhookdemo/slack.py` to load it in vi.  You need the webhook URL from the Incoming Webhooks Slack addon from earlier, and you need to paste it between the single quotes at the line starting with `SLACKURL = ''`
 
+
 ![Docker run]({{ site.baseurl }}images\2017-10-13-docker-photo2.png){: .center-image } 
+
 
 Once you've added your slack webhook url, save the file and Ctrl+C to stop the container.  You can rename it now, I called mine webhook-shim-jon-v1 which is redundant but by the time I remembered it was redundant I didn't want to rename it.  Anyway, to do that you just enter `docker rename <container id or name> newname`  Now we need to save this container that has our Slack URL in it, so run `docker save <container id>`.  Now if you run `docker images` you will see the old webhooks-shim container and the new one we just edited.  
 
+
 ![Docker run]({{ site.baseurl }}images\2017-10-13-docker-photo3.png){: .center-image } 
+
 
 Now the container is ready!
 
@@ -83,19 +92,27 @@ Now you're ready to ROCK AND ROLL!  Go to ipaddress:5001 and you should see the 
 ##Configure vROps Notifications
 Now you need to configure vROps to send to the shim, and from there the shim will send to Slack!  Log in to vROps and go to Administration > Management > Outbound Settings.  You need to ender something in every field, even though the only thing we really need is the Url.  So just put 'none' in the User Name, Password, and Certificate fields.  
 
+
 ![Outbound settings]({{ site.baseurl }}images\2017-10-13-outbound-settings.png){: .center-image } 
+
 
 You can click "Test" and it will say it failed, but it is successful.  In fact, if everything is set up right that will generate a message in Slack!
 
+
 ![Slack test]({{ site.baseurl }}images\2017-10-13-slack-photo1.png){: .center-image } 
+
 
 Now you need to set up an Alert rule to use the new outbound settings.  Go to Alerts > Alert Settings >Notification Settings and click "Add Rule."  You can set this up however you'd like, but keep in mind this will send any alerts to Slack as you define it.  So if you want to receive every single alert and cancellation you can, but it's going to get super noisy.  The example below is configured to send all alerts but only when they have the "New" and "Updated" statuses, not "Cancelled."  
   
+  
   ![Slack test]({{ site.baseurl }}images\2017-10-13-notification-settings.png){: .center-image } 
+ 
  
  This is just an example, there are a million ways to define this rule.  Once you click save, all the alerts that match your rule should now end up in Slack!  They're even color coded!
  
+ 
  ![Slack live]({{ site.baseurl }}images\2017-10-13-slack-photo2.png){: .center-image } 
+ 
  
  And that's how you get the VMware Webhook Shims container running as a Azure Container Instance and configure vROps to send alerts to Slack!  Imagine the possibilities!
  
