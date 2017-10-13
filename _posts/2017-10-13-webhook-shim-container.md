@@ -30,6 +30,7 @@ You'll need to configure the plug in now, and the key parts are where you tell i
 
 
 ##Deploy the Webhook Shim
+
 There are 3 documented ways to deploy this documented on the [github](https://github.com/vmw-loginsight/webhook-shims) page: using a Docker container, using Photon OS, or just using a Linux server with python.  It is not supported to run it from the Log Insight, vROps or vCenter Server Appliances.  Also it might not even be possible, because I tried to do that myself in spite of it being unsupported and failed.  
 
 I didn't have a webserver of my own, so I thought I'd get really crazy and deploy it in THE CLOUD.  But knowing that it came as a container, I decided to go super crazy and deploy it directly onto a container service.  I ended up choosing Azure because I've never used it before and it comes with a $200 credit to try it out.  Since we're just deploying a single, lonely container, the best choice seemed to be the [Azure Container Instance](https://docs.microsoft.com/en-us/azure/container-instances/) service.
@@ -44,6 +45,7 @@ A little context here... Once you end up deploying this web app, there are confi
 6. Deploy the customized container
 
 ##Prepare the Docker Container
+
 This part is pretty straightforward if you use Docker at all, and even pretty easy if you never do.  I mostly followed [this guide](https://blogs.vmware.com/management/2017/03/webhook-shims-now-available-on-docker-hub.html) for these steps.  Fire up docker on your local machine and run `docker run -it -p 5001:5001 vmware/webhook-shims`.  This will download the webhook shim container onto your local machine and start it up interactively, listening on port 5001.  You will see the log file from the web service.
 
 
@@ -71,6 +73,7 @@ Once you've added your slack webhook url, save the file and Ctrl+C to stop the c
 Now the container is ready!
 
 ##Prepare Azure and Deploy the Custom Container
+
 Prerequisite to this step is that you have an Azure account and that you've installed [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest).  I don't have anything really original to add to [this tutorial](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-app) which is what I followed from this point forward.  We've already prepared the container image, so skip to [step 2](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-acr).  Azure CLI runs from the command prompt, not PowerShell, so keep that in mind.  Here's the quick and dirty version, mostly for my own record:
 
 1. Log in to Azure `az login`
@@ -90,6 +93,7 @@ Prerequisite to this step is that you have an Azure account and that you've inst
 Now you're ready to ROCK AND ROLL!  Go to ipaddress:5001 and you should see the endpoint url list!  You can also watch the container's logs by running `az container logs --name aci-tutorial-app -g myResourceGroup`
 
 ##Configure vROps Notifications
+
 Now you need to configure vROps to send to the shim, and from there the shim will send to Slack!  Log in to vROps and go to Administration > Management > Outbound Settings.  You need to ender something in every field, even though the only thing we really need is the Url.  So just put 'none' in the User Name, Password, and Certificate fields.  
 
 
