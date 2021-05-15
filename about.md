@@ -5,8 +5,9 @@ permalink: /about/
 published: true
 ---
 
-vDude is a VMware dude with a specialization in vROps, PowerCLI, and vSAN.  But mostly I like to solve problems using any means necessary.
+The vDude is a VMware dude specializing in vROps, PowerCLI, vSAN, and vCloud Director.  I won't say a hero. 'Cause what's a hero? 
 
 ### Contact me
 
-[jon.somers@gmail.com](mailto:jon.somers@gmail.com)
+[Twitter](http://www.twitter.com/vDudeJon)
+[VMware{code} Slack](https://vmwarecode.slack.com)
