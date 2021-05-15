@@ -7,7 +7,7 @@ date: 2021-05-15 14:04:04 -05:00
 tags: "powershell security"
 ---
 
-While complex passwords with random numbers and letters tend to be secure, they're not very human friendly.  In the VMware world, there are still a lot of times where you might need to enter a password by hand vs pasting it in from some password vault.  Additionally, if you aren't careful, your random password may actually be less secure than a human readable one (Ref: https://xkcd.com/936/)  
+While complex passwords with random numbers and letters tend to be secure, they're not very human friendly.  In the VMware world, there are still a lot of times where you might need to enter a password by hand vs pasting it in from some password vault.  Additionally, if you aren't careful, your random password may actually be less secure than a human readable one (Ref: [https://xkcd.com/936/]https://xkcd.com/936/)  
 
 The website https://www.dinopass.com/ is aimed at generating kid-friendly passwords, but I have found it to be a great resource for generating passwords, as long as you capitalize a letter and throw in a special character.  Convienently, they also provide a simple API.  Using the DinoPass API, I created a Powershell function to generate simple, human readable passwords that include capital and lowercase letters, numbers, and a special character.  Here is the function (also available in my [powershell github folder](https://github.com/vdudejon/Powershell):
 
