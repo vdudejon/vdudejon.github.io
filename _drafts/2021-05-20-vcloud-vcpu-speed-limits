@@ -25,3 +25,8 @@ Once this was done, I used PowerCLI to raise the limits on the VM:
 ```posh
 get-vm -name "CPUTestVM" | Get-VMResourceConfiguration | Set-VMResourceConfiguration -CpuLimitMhz "240000"
 ```
+Once this was done, CPU Co-Stop was 0% when CPU Usage was 100%, and CPU Demand matched CPU Usage.
+
+![CPU Metrics After]({{ site.baseurl }}images\vcloud-vcpu-costop\cpu-metrics-after.png){: .center-image }
+
+So be sure to remember Turbo Boost when you're setting the vCPU speed in vCloud Director!
