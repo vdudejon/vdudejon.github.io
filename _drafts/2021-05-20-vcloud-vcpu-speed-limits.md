@@ -4,8 +4,8 @@ title: High Co-Stop on vCloud Director VMs
 permalink: vcloud-vcpu-costop.html
 description: Some Description
 date: 2021-05-20 9:00:00
-tags: vloud hpc 
-published: false
+tags: vcloud hpc 
+published: true
 ---
 I've been running VM performance tests in vCloud Director, and noticed something strange when the VMs are at 100% CPU utilization even when they're the only VM on the ESXi host.  For example, I had a 48 vCPU VM running on a 48-core ESXi host.  At 100% CPU utilization, there was about 20% co-stop as reported by vROps.  
 
